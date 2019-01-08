@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.jtms.dao.UserRecordDao">
+
+    <select id="getUserJL" resultType="map">
+ SELECT
+	b2.xs_code xscode,
+	b2.car_code carcode,
+	b1.`name` name,
+	b2.user_id id,
+	b2.bk_score bkscore
+FROM
+	sys_user b1
+	RIGHT JOIN car_list b2 ON b1.id = b2.user_id
+WHERE
+	b1.id = #{id}
+    </select>
+
+    <select id="getUserJLDetail" resultType="java.util.Map">
+SELECT
+	b1.xs_code xscode,
+	b2.car_code carcode,
+	b2.time time,
+	b2.location,
+	b3.`name` wzname,
+	b3.score score,
+	b2.pic_url
+FROM
+	car_list b1
+	RIGHT JOIN type_details b2 ON b1.car_code = b2.car_code
+	LEFT JOIN wz_info b3 ON b3.id = b2.type_id
+where b2.car_code = #{xscode}
+	LIMIT #{startPage},#{pageSize}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(1) from type_details where car_code = #{xscode}
+    </select>
+</mapper>

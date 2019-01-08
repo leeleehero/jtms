@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+
+    <!-- Author:  Crunchify.com  -->
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+        </Console>
+        <!-- 注意%i和 %d{yyyyMMdd}，这样子才能将文件删除-->
+        <RollingFile name="RollingFile" filename="/log/Convergence.log"
+                     filepattern="/log/%d{yyyyMMdd}-Convergence-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" >
+                <Delete basePath="/log/" maxDepth="1">
+                    <IfFileName glob="*-Convergence-*.log" />
+                    <IfLastModified age="30D" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+        <!-- name中的值为mybatis的DAO层接口包路径 -->
+        <logger name="com.jk.jtms.dao" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

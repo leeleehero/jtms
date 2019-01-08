@@ -1,11 +1,21 @@
 package com.jk.jtms.entity;
 
 public class User {
+    private String id;
     private String username;
     private String name;
     private String email;
     private String password;
     private String phone;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String sfCode;
 
     public String getUsername() {

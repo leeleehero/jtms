@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.jtms.dao.UserDao">
+    <insert id="addUser" parameterType="com.jk.jtms.entity.User">
+      INSERT INTO `sys_user` ( `id`, `name`, `username`, `password`, `email`, `phone`, `sf_code` )
+      values (#{id},#{name},#{username},#{password},#{email},#{phone},#{sfCode})
+    </insert>
+
+    <select id="isExit" resultType="int">
+        select count(1) from sys_user where username = #{name}
+    </select>
+
+    <select id="getUserJL" resultType="map">
+ SELECT
+	b2.xs_code xscode,
+	b2.car_code carcode,
+	b1.`name` name,
+	b2.user_id id,
+	b2.bk_score bkscore
+FROM
+	sys_user b1
+	RIGHT JOIN car_list b2 ON b1.id = b2.user_id
+WHERE
+	b1.id = #{id}
+    </select>
+</mapper>
