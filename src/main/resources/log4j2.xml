@@ -28,7 +28,7 @@
         <logger name="com.jk.jtms.dao" level="DEBUG" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
-        <Root level="INFO">
+        <Root level="DEBUG">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Root>
