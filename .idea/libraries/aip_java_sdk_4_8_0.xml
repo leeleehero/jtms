@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="aip-java-sdk-4.8.0">
+    <CLASSES>
+      <root url="jar://D:/mavenlib/com.baidu/aip-java-sdk-4.8.0.jar!/" />
+      <root url="jar://D:/mavenlib/com.baidu/json-20160810.jar!/" />
+      <root url="jar://D:/mavenlib/com.baidu/log4j-1.2.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
