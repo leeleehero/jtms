@@ -7,6 +7,15 @@ public class User {
     private String email;
     private String password;
     private String phone;
+    private String sfcode;
+
+    public String getSfcode() {
+        return sfcode;
+    }
+
+    public void setSfcode(String sfcode) {
+        this.sfcode = sfcode;
+    }
 
     public String getId() {
         return id;
