@@ -27,7 +27,7 @@ public class WebContextListener implements InitializingBean, ServletContextAware
     @Override
     public void setServletContext(ServletContext servletContext) {
         try {
-            
+
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
