@@ -21,8 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-@Controller
-@RequestMapping("/upload")
+
 public class UpServerImage {
     private static String path = "D:\\image";
     public static void getFile() throws FileNotFoundException, IOException{
@@ -71,7 +70,7 @@ public class UpServerImage {
      * @throws IOException
      */
 
-    final static String uploadAddres =Thread.currentThread().getContextClassLoader().getResource("image").getPath() ;
+    final static String uploadAddres ="classpath:/image";
     public static String uploadFile(File file , String dir) throws FileNotFoundException, IOException {
         String imgURL = null;
         try {
