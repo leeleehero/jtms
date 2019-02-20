@@ -1,5 +1,6 @@
 package com.jk.jtms.dao;
 
+import com.jk.jtms.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface UserDao {
      * @return
      */
     Map<String,Object> getUserByUsername(@Param("username") String username);
+
+    Integer addUser(User user);
 }
