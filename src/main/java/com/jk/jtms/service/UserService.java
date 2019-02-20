@@ -1,5 +1,7 @@
 package com.jk.jtms.service;
 
+import com.jk.jtms.entity.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,4 +12,7 @@ public interface UserService {
      * @return
      */
     Map<String,Object> getUserByUsername(String username);
+
+
+    String addUser(User user);
 }
