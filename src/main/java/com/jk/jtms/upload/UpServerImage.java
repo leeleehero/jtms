@@ -70,7 +70,7 @@ public class UpServerImage {
      * @throws IOException
      */
 
-    final static String uploadAddres ="classpath:/image";
+    final static String uploadAddres ="D:\\web";
     public static String uploadFile(File file , String dir) throws FileNotFoundException, IOException {
         String imgURL = null;
         try {
@@ -101,7 +101,6 @@ public class UpServerImage {
         }
         return imgURL;
     }
-
 }
 
 
