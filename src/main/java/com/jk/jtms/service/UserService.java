@@ -15,4 +15,8 @@ public interface UserService {
 
 
     String addUser(User user);
+
+    String queryPwd(String username);
+
+    String updatePwd(String username,String pwd);
 }
