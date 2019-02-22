@@ -21,7 +21,7 @@ import java.io.InputStream;
 @Controller
 @RequestMapping("/")
 @ResponseBody
-public class uploadController {
+public class UploadController {
     /**
      * 单个文件上传
      * @param request
