@@ -8,6 +8,15 @@ public class User {
     private String password;
     private String phone;
     private String sfCode;
+    private String salt;
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public String getSfcode() {
         return sfCode;
