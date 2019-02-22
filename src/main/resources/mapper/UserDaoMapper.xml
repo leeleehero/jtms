@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.jtms.dao.UserDao">
     <!--根据用户名获取用户信息-->
-    <select id="getUserByUsername" resultType="hashmap">
-        select * from sys_user where username = #{username}
+    <select id="getUserByUsername" resultType="com.jk.jtms.entity.User">
+        select
+           id,
+           name,
+           username,
+           password,
+           email,
+           phone,
+           sf_code sfCode
+        from
+           sys_user
+        where
+           username = #{username}
     </select>
 </mapper>

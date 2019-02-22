@@ -16,7 +16,7 @@ public class UserServcieImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public Map<String, Object> getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
 

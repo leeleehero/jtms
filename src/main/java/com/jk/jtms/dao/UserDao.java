@@ -12,7 +12,7 @@ public interface UserDao {
      * 根据用户名获取用户信息
      * @return
      */
-    Map<String,Object> getUserByUsername(@Param("username") String username);
+    User getUserByUsername(@Param("username") String username);
 
     Integer addUser(User user);
 }

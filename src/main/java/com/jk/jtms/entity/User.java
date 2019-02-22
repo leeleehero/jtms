@@ -7,14 +7,14 @@ public class User {
     private String email;
     private String password;
     private String phone;
-    private String sfcode;
+    private String sfCode;
 
     public String getSfcode() {
-        return sfcode;
+        return sfCode;
     }
 
     public void setSfcode(String sfcode) {
-        this.sfcode = sfcode;
+        this.sfCode = sfcode;
     }
 
     public String getId() {
@@ -24,8 +24,6 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
-
-    private String sfCode;
 
     public String getUsername() {
         return username;

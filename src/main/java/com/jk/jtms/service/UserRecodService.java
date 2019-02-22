@@ -7,6 +7,5 @@ import java.util.Map;
 
 public interface UserRecodService {
     PageUtil<List<Map<String,Object>>> getUserDetails(int startPage,int pageSize,String xscode);
-
     int getCount(String xscode);
 }

@@ -11,7 +11,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    Map<String,Object> getUserByUsername(String username);
+    User getUserByUsername(String username);
 
 
     String addUser(User user);
