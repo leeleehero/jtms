@@ -29,11 +29,15 @@ public class loginController {
             if (UnknownAccountException.class.getName().equals(e.getClass().getName())) {
                 //最终会抛给异常处理器
                 model.addAttribute("msg", "账号不存在");
+                System.out.println("账号不存在");
             } else if (IncorrectCredentialsException.class.getName().equals(e.getClass().getName())) {
                 model.addAttribute("msg", "用户名/密码错误");
+                System.out.println("用户名/密码错误");
             } else {
                 //最终在异常处理器生成未知错误.
+                e.printStackTrace();
                 model.addAttribute("msg", "其他异常信息");
+                System.out.println("其他异常信息");
             }
             return "index";
         }
