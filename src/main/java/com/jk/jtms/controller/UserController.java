@@ -3,6 +3,8 @@ package com.jk.jtms.controller;
 import com.jk.jtms.comm.CommonResult;
 import com.jk.jtms.entity.User;
 import com.jk.jtms.service.UserService;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,20 +24,33 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/addUser")
+    @PostMapping("/addUser")
     public CommonResult addUser(User user){
         try{
-            user.setUsername("ll");
-            user.setSfCode("111");
-            user.setPhone("123");
-            user.setSfCode("3218111");
-            System.out.println(user.getSfCode());
-            user.setName("litao");
-            user.setEmail("110@qq.com");
-            user.setPassword("123");
             return CommonResult.ok(userService.addUser(user));
         }catch (Exception e){
-            return CommonResult.build(500, "注册失败");
+            e.printStackTrace();
+            return CommonResult.build(500, e.getMessage()+"注册失败");
+        }
+    }
+
+    @PostMapping("/queryPwd")
+    public CommonResult queryPwd(String username){
+        try{
+            return CommonResult.ok(userService.queryPwd(username));
+        }catch (Exception e){
+            e.printStackTrace();
+            return CommonResult.build(500, "查询失败");
+        }
+    }
+
+    @PostMapping("/updatePwd")
+    public CommonResult updatePwd(String username,String pwd){
+        try{
+            return CommonResult.ok(userService.updatePwd(username, pwd));
+        }catch (Exception e){
+            e.printStackTrace();
+            return CommonResult.build(500, "修改失败");
         }
     }
 }

@@ -15,4 +15,8 @@ public interface UserDao {
     User getUserByUsername(@Param("username") String username);
 
     Integer addUser(User user);
+
+    Integer queryPwd(String username);
+
+    Integer updatePwd(@Param("username") String username,@Param("pwd") String pwd);
 }

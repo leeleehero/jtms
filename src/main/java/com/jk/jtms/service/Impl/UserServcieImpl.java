@@ -3,6 +3,7 @@ package com.jk.jtms.service.Impl;
 import com.jk.jtms.dao.UserDao;
 import com.jk.jtms.entity.User;
 import com.jk.jtms.service.UserService;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,47 @@ public class UserServcieImpl implements UserService {
 
     @Override
     public String addUser(User user) {
-        user.setId(UUID.randomUUID().toString());
+//        user.setUsername("xiaoming");
+//        user.setSfCode("111");
+//        user.setPhone("123");
+//        user.setSfCode("321181199610203797");
+//        user.setName("小明");
+//        user.setEmail("110@qq.com");
+//        user.setPassword("123456");
+//        user.setId("321181199610203797");
+        String pwd = user.getPassword();
+        String salt = user.getUsername();
+        //盐值加密三次 盐是用户名
+        String str = new Md5Hash(pwd,salt,3).toString();
+
+        user.setPassword(str);
+        user.setSalt(salt);
+        user.setRoleId("3cf9dd0d-6373-4458-8a72-7958113ae17b");
         Integer i = userDao.addUser(user);
         if(i==1){
             return "插入成功";
         }else{
             return "注册失败";
+        }
+    }
+
+    @Override
+    public String queryPwd(String username) {
+        Integer i = userDao.queryPwd(username);
+        if(i==1){
+            return "密码正确";
+        }else{
+            return "密码错误";
+        }
+    }
+
+    @Override
+    public String updatePwd(String username, String pwd) {
+        Integer i = userDao.updatePwd(username, pwd);
+        if(i==1){
+            return "修改成功";
+        }else{
+            return "修改失败";
         }
     }
 }
