@@ -9,6 +9,15 @@ public class User {
     private String phone;
     private String sfCode;
     private String salt;
+    private String roleId;
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
 
     public String getSalt() {
         return salt;
