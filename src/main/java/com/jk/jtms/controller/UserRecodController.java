@@ -25,7 +25,7 @@ public class UserRecodController {
         }
     }
 
-    //用户查询违规次数
+    //用户查询违规次数单独车辆违规次数
     @PostMapping("/getCount")
     public CommonResult getCount(String xscode){
         try{
