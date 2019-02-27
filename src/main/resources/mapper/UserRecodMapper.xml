@@ -56,4 +56,7 @@ FROM
 </where>
 	</select>
 
+	<select id="getUserCredit" resultType="java.util.Map">
+		select user_credit ,user_id,id,jz_code from user_credit where user_id = #{userid}
+	</select>
 </mapper>
