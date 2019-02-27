@@ -17,4 +17,8 @@ public interface UserRecordDao {
     List<Map<String,Object>> getUserJLDetail(Map map);
 
     int getCount(String xscode);
+
+    List<String> getCarCode(String userid);
+
+    Integer getScore(Map map);
 }
