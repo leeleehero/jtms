@@ -45,6 +45,13 @@ public class UserRecodServiceImpl implements UserRecodService {
         map.put("carcode", carcode);
         return userRecordDao.getScore(map);
     }
+
+    @Override
+    public Map<String, Object> getUserCredit(String userid) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("userid", userid);
+        return userRecordDao.getUserCredit(map);
+    }
 }
 
 

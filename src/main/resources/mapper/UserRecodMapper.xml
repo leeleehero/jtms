@@ -46,14 +46,17 @@ WHERE
 
 	<select id="getScore" resultType="int">
 		SELECT
-	sum( b.score )
+		ifnull(sum( b.score ),0)
 FROM
 	type_details a
 	LEFT JOIN wz_info b ON a.type_id = b.id
 <where>
 	<if test="status != null and status !=''">a.STATUS = #{status}</if>
-	<if test="carcode != null and carcode !=''">a.car_code = #{carcode}</if>
+	<if test="carcode != null and carcode !=''"> and a.car_code = #{carcode}</if>
 </where>
 	</select>
 
+	<select id="getUserCredit" resultType="java.util.Map">
+		select credit_num ,user_id,id,jz_code from user_credit where user_id = #{userid}
+	</select>
 </mapper>

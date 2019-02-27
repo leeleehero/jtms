@@ -46,11 +46,21 @@ public class UserRecodController {
         }
     }
 
-    //总分更具选中的状态车辆
+    //违章总分更具选中的状态车辆
     @GetMapping("/getScore")
     public CommonResult getScore(String status,String carcode){
         try{
             return CommonResult.ok(userRecodService.getScore(status, carcode));
+        }catch (Exception e){
+            return CommonResult.build(200, "车辆查询错误");
+        }
+    }
+
+    //查询自己的驾驶证信息
+    @GetMapping("/getUserCredit")
+    public CommonResult getUserCredit(String userid){
+        try{
+            return CommonResult.ok(userRecodService.getUserCredit(userid));
         }catch (Exception e){
             return CommonResult.build(200, "车辆查询错误");
         }

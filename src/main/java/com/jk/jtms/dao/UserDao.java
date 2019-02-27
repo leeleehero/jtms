@@ -19,4 +19,6 @@ public interface UserDao {
     Integer queryPwd(String username);
 
     Integer updatePwd(@Param("username") String username,@Param("pwd") String pwd);
+
+    Integer addUserCried(Map map);
 }

@@ -19,7 +19,7 @@
 
     <!--用户注册-->
     <insert id="addUser" parameterType="com.jk.jtms.entity.User" >
-    INSERT INTO `jsmt`.`sys_user` ( `id`, `name`, `username`, `password`, `email`, `phone`, `sf_code`, `role_id`, `salt` )
+    INSERT INTO `sys_user` ( `id`, `name`, `username`, `password`, `email`, `phone`, `sf_code`, `role_id`, `salt` )
     VALUES
 	( #{id}, #{name}, #{username}, #{password}, #{email}, #{phone}, #{sfcode}, #{roleId},#{salt} );
     </insert>
@@ -31,4 +31,8 @@
     <update id="updatePwd" parameterType="string">
         update sys_user set password = #{pwd} where username = #{username}
     </update>
+
+    <insert id="addUserCried">
+        INSERT INTO `user_credit`(`user_id`, `credit_num`, `id`, `jz_code`) VALUES (#{userid}, #{creditnum}, #{id}, #{jz_code});
+    </insert>
 </mapper>
