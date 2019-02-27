@@ -17,20 +17,20 @@ WHERE
     </select>
 
     <select id="getUserJLDetail" resultType="java.util.Map">
-SELECT
-	b1.xs_code xscode,
-	b2.car_code carcode,
-	b2.time time,
-	b2.location,
-	b3.`name` wzname,
-	b3.score score,
-	b2.pic_url
-FROM
-	car_list b1
-	RIGHT JOIN type_details b2 ON b1.car_code = b2.car_code
-	LEFT JOIN wz_info b3 ON b3.id = b2.type_id
-where b2.car_code = #{xscode}
-	LIMIT #{startPage},#{pageSize}
+	SELECT
+		b1.xs_code xscode,
+		b2.car_code carcode,
+		b2.time time,
+		b2.location,
+		b3.`name` wzname,
+		b3.score score,
+		b2.status
+	FROM
+		car_list b1
+		RIGHT JOIN type_details b2 ON b1.car_code = b2.car_code
+		LEFT JOIN wz_info b3 ON b3.id = b2.type_id
+	where b2.car_code = #{xscode}
+		LIMIT #{startPage},#{pageSize}
     </select>
 
     <select id="getCount" resultType="int">
