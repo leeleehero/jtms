@@ -20,12 +20,13 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"/>
         <property name="cacheManager" ref="ehCacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager" />
     </bean>
 
     <!--这里的id一定要和web.xml中的shiroFilter一致，因为web容器中只是一个shiroFilter代理对象，它从spring容器中拿-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/view/index.html"/>
+        <property name="loginUrl" value="/view/login.html"/>
         <property name="unauthorizedUrl" value="/view/nopermisson.html"/>
         <property name="filterChainDefinitions">
             <value>
@@ -34,7 +35,7 @@
                 /css/**=anon
                 /login=anon
                 /messages/**=anon
-                /**=authc
+                /**=user
             </value>
         </property>
     </bean>
@@ -67,5 +68,18 @@
         <property name="configLocation" value="classpath:shiro-ehcache.xml"/>
         <property name="shared" value="true"/>
     </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe" />
+        <property name="httpOnly" value="true" />
+        <!-- 默认记住7天（单位：秒） -->
+        <property name="maxAge" value="604800" />
+    </bean>
+
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie" />
+    </bean>
+
 
 </beans>

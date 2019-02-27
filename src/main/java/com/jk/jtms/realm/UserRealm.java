@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public class UserRealm extends AuthorizingRealm {
 
@@ -33,16 +34,15 @@ public class UserRealm extends AuthorizingRealm {
     }
 
 
-//    public static void main(String[] args) {
-//        String str = new Md5Hash(password,"fdsfs",3).toString();
-//        System.out.println(str);
-//    }
+    public static void main(String[] args) {
+        System.out.println(UUID.randomUUID().toString());
+    }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         //Map primaryPrincipal = (Map) principalCollection.getPrimaryPrincipal();
         Set<String> set = new HashSet<>();
-        set.add("wz:delete");
+        set.add("wz:add");
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.setStringPermissions(set);
         return info;

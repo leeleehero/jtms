@@ -1,49 +1,24 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)https://getbootstrap.com/docs/4.2/examples/sign-in/ -->
-<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Signin Template · Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>你好</title>
 </head>
-<body class="text-center">
-<form class="form-signin" action="/login" method="post">
-    <img class="mb-4" src="/images/bootstrap-solid.svg" alt="图片获取失败" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal" >请登录</h1>
-    <label for="username" class="sr-only">用户名</label>
-    <input type="text" id="username" name="username" class="form-control" placeholder="用户名 " required="" autofocus="">
-    <label for="inputPassword" class="sr-only">密码</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+<body>
+<shiro:hasPermission name="wz:delete">
+<form action="/wz/delete" method="get">
+    <input type="submit" value="删除违章记录"></input>
 </form>
+</shiro:hasPermission>
+
+<shiro:hasPermission name="wz:add">
+<form action="/wz/add" method="get">
+    <input type="submit" value="添加违章记录"></input>
+</form>
+</shiro:hasPermission>
+
 </body>
 </html>

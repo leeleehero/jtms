@@ -23,19 +23,10 @@ public class UserServcieImpl implements UserService {
 
     @Override
     public String addUser(User user) {
-//        user.setUsername("xiaoming");
-//        user.setSfCode("111");
-//        user.setPhone("123");
-//        user.setSfCode("321181199610203797");
-//        user.setName("小明");
-//        user.setEmail("110@qq.com");
-//        user.setPassword("123456");
-//        user.setId("321181199610203797");
         String pwd = user.getPassword();
         String salt = user.getUsername();
         //盐值加密三次 盐是用户名
         String str = new Md5Hash(pwd,salt,3).toString();
-
         user.setPassword(str);
         user.setSalt(salt);
         user.setRoleId("3cf9dd0d-6373-4458-8a72-7958113ae17b");
