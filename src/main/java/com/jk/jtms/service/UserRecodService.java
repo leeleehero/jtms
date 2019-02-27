@@ -10,4 +10,5 @@ public interface UserRecodService {
     int getCount(String xscode);
     List<String> getCarCode(String userid);
     int getScore(String carcode,String status);
+    Map<String,Object> getUserCredit(String userid);
 }
