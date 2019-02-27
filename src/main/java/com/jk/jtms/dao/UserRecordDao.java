@@ -21,4 +21,6 @@ public interface UserRecordDao {
     List<String> getCarCode(String userid);
 
     Integer getScore(Map map);
+
+    Map<String,Object> getUserCredit(Map map);
 }
