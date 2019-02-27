@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserRecodService {
-    PageUtil<List<Map<String,Object>>> getUserDetails(int startPage,int pageSize,String xscode);
+    PageUtil<List<Map<String,Object>>> getUserDetails(int startPage,int pageSize,String xscode,String status);
     int getCount(String xscode);
+    List<String> getCarCode(String userid);
+    int getScore(String carcode,String status);
 }
