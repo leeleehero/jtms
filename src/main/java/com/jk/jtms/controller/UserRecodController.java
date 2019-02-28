@@ -2,6 +2,7 @@ package com.jk.jtms.controller;
 
 
 import com.jk.jtms.comm.CommonResult;
+import com.jk.jtms.entity.Wzss;
 import com.jk.jtms.service.UserRecodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,6 +67,40 @@ public class UserRecodController {
         }
     }
 
+    //单次违章信息
+    @GetMapping("/getCarDetails")
+    public CommonResult getCarDetails(String id){
+        try{
+            return CommonResult.ok(userRecodService.getCarDetails(id));
+        }catch (Exception e){
+            return CommonResult.build(200, "车辆查询错误");
+        }
+    }
+
+    //发送申诉
+    @GetMapping("/SendShengSu")
+    public CommonResult SendShengSu(Wzss wzss){
+        try{
+            Integer i = userRecodService.sendShengSu(wzss);
+            if (i==1){
+                return CommonResult.ok("申请提交");
+            }else{
+                return CommonResult.ok("申请提交失败");
+            }
+        }catch (Exception e){
+            return CommonResult.build(200, "申请提交失败");
+        }
+    }
+
+    //查看自己的申诉
+    @GetMapping("/getShengSu")
+    public CommonResult getShengSu(String sfcode){
+        try{
+            return CommonResult.ok(userRecodService.getShenSu(sfcode));
+        }catch (Exception e){
+            return CommonResult.build(200, "申请提交失败");
+        }
+    }
 
 }
 

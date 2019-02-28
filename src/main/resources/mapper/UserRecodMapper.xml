@@ -17,18 +17,21 @@ WHERE
     </select>
 
     <select id="getUserJLDetail" resultType="java.util.Map">
-	SELECT
+		SELECT
 		b1.xs_code xscode,
 		b2.car_code carcode,
 		b2.time time,
 		b2.location,
 		b3.`name` wzname,
 		b3.score score,
-		b2.status
-	FROM
+		b2.status,
+		b4.`status` sszt,
+		b3.id
+		FROM
 		car_list b1
 		RIGHT JOIN type_details b2 ON b1.car_code = b2.car_code
 		LEFT JOIN wz_info b3 ON b3.id = b2.type_id
+		LEFT JOIN wz_ss b4 ON b3.id = b4.id
 		<where>
 			<if test="b2.car_code != null and b2.car_code != ''" >b2.car_code = #{xscode}</if>
 			<if test="b2.status != null and b2.status != ''" >and b2.status = #{status}</if>
@@ -58,5 +61,17 @@ FROM
 
 	<select id="getUserCredit" resultType="java.util.Map">
 		select credit_num ,user_id,id,jz_code from user_credit where user_id = #{userid}
+	</select>
+	
+	<select id="getCarDetails" resultType="java.util.Map">
+		select `car_code`, `type_id`, `time`, `location`, `pic_url`, `status`,sf_code from `type_details where id = #{id}
+	</select>
+
+	<update id="sendSuSong" parameterType="com.jk.jtms.entity.Wzss">
+		UPDATE `wz_ss` SET `car_code` = #{carcode}, `msg` = #{msg}, `status` = #{status},sf_code =#{sfcode} WHERE `id` = #{id};
+	</update>
+
+	<select id="queyrShenSu" parameterType="string" resultType="com.jk.jtms.entity.Wzss">
+		select * from wz_ss where sf_code = #{sfcode}
 	</select>
 </mapper>

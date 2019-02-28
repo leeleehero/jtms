@@ -1,6 +1,7 @@
 package com.jk.jtms.service;
 
 import com.jk.jtms.comm.PageUtil;
+import com.jk.jtms.entity.Wzss;
 
 import java.util.List;
 import java.util.Map;
@@ -11,4 +12,7 @@ public interface UserRecodService {
     List<String> getCarCode(String userid);
     int getScore(String carcode,String status);
     Map<String,Object> getUserCredit(String userid);
+    Map<String,Object> getCarDetails(String id);
+    Integer sendShengSu(Wzss wzss);
+    List<Wzss> getShenSu(String sfcode);
 }

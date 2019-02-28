@@ -2,6 +2,7 @@ package com.jk.jtms.service.Impl;
 
 import com.jk.jtms.comm.PageUtil;
 import com.jk.jtms.dao.UserRecordDao;
+import com.jk.jtms.entity.Wzss;
 import com.jk.jtms.service.UserRecodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,21 @@ public class UserRecodServiceImpl implements UserRecodService {
         Map<String,Object> map = new HashMap<>();
         map.put("userid", userid);
         return userRecordDao.getUserCredit(map);
+    }
+
+    @Override
+    public Map<String, Object> getCarDetails(String id) {
+        return userRecordDao.getCarDetails(id);
+    }
+
+    @Override
+    public Integer sendShengSu(Wzss wzss) {
+        return userRecordDao.sendSuSong(wzss);
+    }
+
+    @Override
+    public List<Wzss> getShenSu(String sfcode) {
+        return userRecordDao.queyrShenSu(sfcode);
     }
 }
 

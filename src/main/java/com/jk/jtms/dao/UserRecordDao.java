@@ -1,5 +1,7 @@
 package com.jk.jtms.dao;
 
+import com.jk.jtms.entity.Wzss;
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,4 +25,10 @@ public interface UserRecordDao {
     Integer getScore(Map map);
 
     Map<String,Object> getUserCredit(Map map);
+
+    Map<String,Object> getCarDetails(String id);
+
+    Integer sendSuSong(Wzss wzss);
+
+    List<Wzss> queyrShenSu(String sfcode);
 }
