@@ -14,9 +14,32 @@ public interface UserService {
     User getUserByUsername(String username);
 
 
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     String addUser(User user);
 
+    /**
+     * 查询密码
+     * @param username
+     * @return
+     */
     String queryPwd(String username);
 
+    /**
+     * 更新密码
+     * @param username
+     * @param pwd
+     * @return
+     */
     String updatePwd(String username,String pwd);
+
+    /**
+     * 查询用户邮箱信息
+     * @param username
+     * @return
+     */
+    String getUserEmail(String username);
 }

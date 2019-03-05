@@ -1,18 +1,20 @@
 package com.jk.jtms.controller;
 
+import com.jk.jtms.comm.CharacterUtil;
 import com.jk.jtms.comm.CommonResult;
+import com.jk.jtms.comm.EmailUtil;
+import com.jk.jtms.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.mail.MessagingException;
 
 @Controller
 @CrossOrigin
@@ -20,14 +22,24 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/")
 public class loginController {
 
+    @Autowired
+    private UserService userService;
+
+    String authCode = null;
+
     /**
-     * 登录接口
-     * @param response
-     * @param model
+     * 用户登录
+     * @param username
+     * @param password
+     * @param rememberme
+     * @param code
      * @return
      */
     @PostMapping(value = "/login")
-    public CommonResult login(String username, String password, String rememberme) {
+    public CommonResult login(String username, String password, String rememberme,String code) {
+        if(!code.equals(authCode)){
+            return CommonResult.build(500,"验证码错误");
+        }
         Subject subject = SecurityUtils.getSubject();
         boolean isRemember = "rememberme".equals(rememberme);
         String msg = null;
@@ -56,5 +68,23 @@ public class loginController {
         }
         }
         return CommonResult.ok(200);
+    }
+
+    /**
+     * 获取登录验证码
+     * @param username
+     * @return
+     */
+    @GetMapping("/getAuthCode")
+    public CommonResult loginAuth(String username){
+        String email = userService.getUserEmail(username);
+        authCode = CharacterUtil.getCode();
+        try {
+            EmailUtil.send_mail(email,authCode,username);
+            return CommonResult.build(200,"验证码发送成功");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return CommonResult.build(500,"验证码发送失败");
+        }
     }
 }

@@ -35,4 +35,8 @@
     <insert id="addUserCried">
         INSERT INTO `user_credit`(`user_id`, `credit_num`, `id`, `jz_code`) VALUES (#{userid}, #{creditnum}, #{id}, #{jz_code});
     </insert>
+
+    <select id="getUserEmail" parameterType="string" resultType="string">
+        select email from sys_user where username = #{username}
+    </select>
 </mapper>

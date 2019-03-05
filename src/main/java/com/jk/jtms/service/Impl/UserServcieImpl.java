@@ -76,4 +76,9 @@ public class UserServcieImpl implements UserService {
             return "修改失败";
         }
     }
+
+    @Override
+    public String getUserEmail(String username) {
+        return userDao.getUserEmail(username);
+    }
 }
