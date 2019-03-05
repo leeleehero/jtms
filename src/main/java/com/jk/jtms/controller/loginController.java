@@ -1,5 +1,6 @@
 package com.jk.jtms.controller;
 
+import com.jk.jtms.comm.CommonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -14,23 +15,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@CrossOrigin
+@ResponseBody
 @RequestMapping("/")
 public class loginController {
 
     /**
      * 登录接口
-     * @param request
      * @param response
      * @param model
      * @return
      */
     @PostMapping(value = "/login")
-    public String login(HttpServletRequest request, HttpServletResponse response,Model model) {
+    public CommonResult login(String username, String password, String rememberme) {
         Subject subject = SecurityUtils.getSubject();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String rememberMe = request.getParameter("rememberme");
-        boolean isRemember = "remember-me".equals(rememberMe);
+        boolean isRemember = "rememberme".equals(rememberme);
+        String msg = null;
         System.out.println(isRemember+"************************");
         Subject currentUser = SecurityUtils.getSubject();
         if(!currentUser.isAuthenticated()){
@@ -41,20 +41,20 @@ public class loginController {
             } catch (AuthenticationException e) {
                 if (UnknownAccountException.class.getName().equals(e.getClass().getName())) {
                     //最终会抛给异常处理器
-                    model.addAttribute("msg", "账号不存在");
+                    msg = "账号不存在";
                     System.out.println("账号不存在");
                 } else if (IncorrectCredentialsException.class.getName().equals(e.getClass().getName())) {
-                    model.addAttribute("msg", "用户名/密码错误");
+                    msg = "用户名/密码错误";
                     System.out.println("用户名/密码错误");
                 } else {
                     //最终在异常处理器生成未知错误.
                     e.printStackTrace();
-                    model.addAttribute("msg", "其他异常信息");
+                    msg = "其他错误";
                     System.out.println("其他异常信息");
                 }
-                return "login";
+                return CommonResult.build(500, msg);
         }
         }
-        return "index";
+        return CommonResult.ok(200);
     }
 }
