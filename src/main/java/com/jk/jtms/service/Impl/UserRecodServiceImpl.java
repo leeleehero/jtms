@@ -17,15 +17,24 @@ public class UserRecodServiceImpl implements UserRecodService {
     @Autowired
     private UserRecordDao userRecordDao;
     @Override
-    public PageUtil<List<Map<String, Object>>> getUserDetails(int pageNo, int pageSize, String carcode,String status) {
+    public PageUtil<List<Map<String, Object>>> getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode) {
         Map<String,Object> map = new HashMap<>();
         int start = (pageNo-1)*pageSize;
         map.put("startPage", start);
         map.put("pageSize", pageSize);
-        map.put("xscode", carcode);
+        map.put("carcode", carcode);
         map.put("status", status);
-        int cnt = getCount(carcode);
-        List<Map<String,Object>> list = userRecordDao.getUserJLDetail(map);
+        map.put("username", username);
+        map.put("xscode", xscode);
+        int cnt = 4;
+
+        List<Map<String,Object>> list = null;
+        try {
+            list = userRecordDao.getUserJLDetail(map);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
         return new PageUtil<>(pageSize,pageNo,cnt,list);
     }
 

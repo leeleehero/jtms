@@ -16,7 +16,7 @@ public interface UserDao {
 
     Integer addUser(User user);
 
-    Integer queryPwd(String username);
+    Integer queryPwd(@Param("username")String username,@Param("password")String password);
 
     Integer updatePwd(@Param("username") String username,@Param("pwd") String pwd);
 

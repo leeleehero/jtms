@@ -6,22 +6,20 @@ import com.jk.jtms.entity.Wzss;
 import com.jk.jtms.service.UserRecodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
-@RequestMapping("yh")
+@RequestMapping("/yh")
 public class UserRecodController {
     @Autowired
     private UserRecodService userRecodService;
 
     //用户查询车辆违规细节
     @GetMapping("/getUserDetails")
-    public CommonResult getUserDetails(int pageNo, int pageSize, String carcode,String status){
+    public CommonResult getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode){
         try {
-            return CommonResult.ok(userRecodService.getUserDetails(pageNo, pageSize, carcode,status));
+            return CommonResult.ok(userRecodService.getUserDetails(pageNo, pageSize, carcode,status,username,xscode));
         }catch (Exception e){
             return CommonResult.build(200, "查询错误");
         }

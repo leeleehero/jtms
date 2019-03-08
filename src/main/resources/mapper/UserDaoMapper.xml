@@ -25,7 +25,7 @@
     </insert>
 
     <select id="queryPwd" resultType="int">
-        select count(1) from sys_user where username = #{username}
+        select count(1) from sys_user where username = #{username} and password = #{password}
     </select>
 
     <update id="updatePwd" parameterType="string">

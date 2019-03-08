@@ -26,7 +26,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    String queryPwd(String username);
+    String queryPwd(String username,String password,String pwd);
 
     /**
      * 更新密码

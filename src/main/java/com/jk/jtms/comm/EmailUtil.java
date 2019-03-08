@@ -15,6 +15,7 @@ public class EmailUtil {
          * @param text 发送内容
          */
         public static void send_mail(String to,String text,String username) throws MessagingException {
+            System.out.println(username+"--------------------");
             String name = username;
             name = name.substring(0,2);
             for (int i=2;i<username.length()-1;i++){
@@ -54,10 +55,10 @@ public class EmailUtil {
         }
 
 //    public static void main(String[] args) {
-//        try {
-//            EmailUtil.send_mail("1461984577@qq.com","859632","wangyongxin");
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+////        try {
+////            EmailUtil.send_mail("1461984577@qq.com","859632","wangyongxin");
+////        } catch (MessagingException e) {
+////            e.printStackTrace();
+////        }
+////    }
 }

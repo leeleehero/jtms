@@ -37,6 +37,8 @@ public class UploadController {
             //log.info("upload2---------------start---------------------");
             //log.info("这个临时文件的路径是[{}]", path);
             System.out.println("这个临时文件的路径是["+path+"]");
+            String wzName = request.getParameter("location");
+            String wzType = request.getParameter("wzType");
             String filename = partFile.getOriginalFilename();
             //log.info("文件的名字：{}",filename);
             System.out.println("文件的名字：{}"+filename);

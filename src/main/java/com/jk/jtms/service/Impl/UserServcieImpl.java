@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.jar.JarEntry;
 
 @Service
 public class UserServcieImpl implements UserService {
@@ -37,6 +38,7 @@ public class UserServcieImpl implements UserService {
 //        user.setId("321181199610203111712313197");
         String pwd = user.getPassword();
         String salt = user.getUsername();
+        user.setId(user.getSfcode());
         //盐值加密三次 盐是用户名
         String str = new Md5Hash(pwd,salt,3).toString();
         Map<String,Object> map = new HashMap<>();
@@ -57,9 +59,11 @@ public class UserServcieImpl implements UserService {
     }
 
     @Override
-    public String queryPwd(String username) {
-        Integer i = userDao.queryPwd(username);
-        if(i==1){
+    public String queryPwd(String username,String password,String pwd) {
+        String str = new Md5Hash(pwd,username,3).toString();
+        Integer i = userDao.queryPwd(username,password);
+        Integer j = userDao.updatePwd(username, str);
+        if(i==1&&j==1){
             return "密码正确";
         }else{
             return "密码错误";

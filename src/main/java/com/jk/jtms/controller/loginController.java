@@ -79,6 +79,7 @@ public class loginController {
     public CommonResult loginAuth(String username){
         String email = userService.getUserEmail(username);
         authCode = CharacterUtil.getCode();
+        System.out.println(email+"--------------");
         try {
             EmailUtil.send_mail(email,authCode,username);
             return CommonResult.build(200,"验证码发送成功");

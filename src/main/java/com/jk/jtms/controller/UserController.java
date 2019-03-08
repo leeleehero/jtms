@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description:
  * @date 2019/2/19 14:25
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -35,12 +36,12 @@ public class UserController {
     }
 
     @PostMapping("/queryPwd")
-    public CommonResult queryPwd(String username){
+    public CommonResult queryPwd(String username,String password,String pwd){
         try{
-            return CommonResult.ok(userService.queryPwd(username));
+            return CommonResult.ok(userService.queryPwd(username,password,pwd));
         }catch (Exception e){
             e.printStackTrace();
-            return CommonResult.build(500, "查询失败");
+            return CommonResult.build(500, "旧密码错误");
         }
     }
 
