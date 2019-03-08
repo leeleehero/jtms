@@ -14,5 +14,5 @@ public interface BaiduApiService {
      * @param client
      * @return
      */
-    String getCp(AipOcr client);
+    String getCp(AipOcr client,String fileUrl);
 }

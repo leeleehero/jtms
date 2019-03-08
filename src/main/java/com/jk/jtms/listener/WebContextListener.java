@@ -21,9 +21,6 @@ import org.springframework.web.context.ServletContextAware;
 @Service
 public class WebContextListener implements InitializingBean, ServletContextAware{
 
-
-
-
     @Override
     public void setServletContext(ServletContext servletContext) {
         try {

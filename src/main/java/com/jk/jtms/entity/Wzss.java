@@ -1,12 +1,9 @@
 package com.jk.jtms.entity;
 
 /**
- * @author LITAO
- * @version V1.0
- * @Package com.jk.jtms.entity
- * @Title:
- * @Description:
- * @date 2019/2/28 15:16
+ *
+ * 违章申诉信息
+ *
  */
 public class Wzss {
     private String id;
