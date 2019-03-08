@@ -17,10 +17,11 @@ public class UserRecodController {
 
     //用户查询车辆违规细节
     @GetMapping("/getUserDetails")
-    public CommonResult getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode){
+    public CommonResult getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode,String sszt){
         try {
-            return CommonResult.ok(userRecodService.getUserDetails(pageNo, pageSize, carcode,status,username,xscode));
+            return CommonResult.ok(userRecodService.getUserDetails(pageNo, pageSize, carcode,status,username,xscode,sszt));
         }catch (Exception e){
+            e.printStackTrace();
             return CommonResult.build(200, "查询错误");
         }
     }
@@ -29,7 +30,7 @@ public class UserRecodController {
     @GetMapping("/getCount")
     public CommonResult getCount(String xscode){
         try{
-            return CommonResult.ok(userRecodService.getCount(xscode));
+            return CommonResult.ok(userRecodService.getCountNum(xscode));
         }catch (Exception e){
             return CommonResult.build(200, "查询错误");
         }
@@ -100,6 +101,26 @@ public class UserRecodController {
         }
     }
 
+    //查询违章细节
+    @GetMapping("/getWzDeatis")
+    public CommonResult getWzDeatis(String id){
+        try{
+            return CommonResult.ok(userRecodService.getWzDetails(id));
+        }catch (Exception e){
+            return CommonResult.build(200, "查询失败");
+        }
+    }
+
+    //处理违章
+    @GetMapping("/updateStatus")
+    public CommonResult updateStatus(String carcode,String time){
+        try{
+            return CommonResult.ok(userRecodService.updateStatus(carcode, time));
+        }catch (Exception e){
+            e.printStackTrace();
+            return CommonResult.build(200, "违章修改失败");
+        }
+    }
 }
 
 

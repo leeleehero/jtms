@@ -3,6 +3,7 @@ package com.jk.jtms.controller;
 import com.baidu.aip.ocr.AipOcr;
 import com.jk.jtms.comm.CommonResult;
 import com.jk.jtms.comm.CommonResultT;
+import com.jk.jtms.dao.CarDao;
 import com.jk.jtms.entity.WzInfo;
 import com.jk.jtms.service.BaiduApiService;
 import com.jk.jtms.service.Impl.BaiduApiServiceImpl;
@@ -16,8 +17,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  *
@@ -35,6 +36,9 @@ public class UploadController {
     public static final String APP_ID = "15368523";
     public static final String API_KEY = "mFsINdPHfYaZdlKS5pY6K7Ti";
     public static final String SECRET_KEY = "17ve46XqTHF3WtXZVSgHUrvcf0ITy4Zy";
+
+    @Autowired
+    private CarDao carDao;
 
     /**
      * 单个文件上传
@@ -71,6 +75,19 @@ public class UploadController {
             wzInfo.setArea(area);
             wzInfo.setCarCode(result);
             wzInfo.setType(type);
+            String fsCode = carDao.getUserId(result);
+            String wzType = carDao.getWzType(type);
+            System.out.println(wzType+"++++++++++++++++++++++++");
+            Map<String,Object> map = new HashMap<>();
+            map.put("sfcode", fsCode);
+            map.put("wzType", wzType);
+            map.put("area", area);
+            map.put("url", path+"/"+filename);
+            map.put("id", UUID.randomUUID().toString());
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            map.put("time", df.format(new Date()));
+            map.put("carcode", result);
+            carDao.addTypeDetails(map);
             wzInfo.setFileUrl(path+"/"+filename);
             return CommonResultT.ok(wzInfo);
         } catch (Exception e) {
@@ -78,6 +95,7 @@ public class UploadController {
             return CommonResultT.build(500,"违章图片识别失败");
         }
     }
+
 
 }
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -28,5 +29,20 @@ public class CarServiceImpl implements CarService {
     @Override
     public Integer addCarInfo(Car car) {
         return null;
+    }
+
+    @Override
+    public String getUserId(String carcode) {
+        return carDao.getUserId(carcode);
+    }
+
+    @Override
+    public String getWzType(String type) {
+        return carDao.getWzType(type);
+    }
+
+    @Override
+    public Integer addTypeDetails(Map map) {
+        return carDao.addTypeDetails(map);
     }
 }

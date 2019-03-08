@@ -17,7 +17,7 @@ public class UserRecodServiceImpl implements UserRecodService {
     @Autowired
     private UserRecordDao userRecordDao;
     @Override
-    public PageUtil<List<Map<String, Object>>> getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode) {
+    public PageUtil<List<Map<String, Object>>> getUserDetails(int pageNo, int pageSize, String carcode,String status,String username,String xscode,String sszt) {
         Map<String,Object> map = new HashMap<>();
         int start = (pageNo-1)*pageSize;
         map.put("startPage", start);
@@ -26,7 +26,9 @@ public class UserRecodServiceImpl implements UserRecodService {
         map.put("status", status);
         map.put("username", username);
         map.put("xscode", xscode);
-        int cnt = 4;
+        map.put("sszt", sszt);
+        System.out.println("+++++++++++++++++++++++++++++++++");
+        int cnt = getCountNum(carcode);
 
         List<Map<String,Object>> list = null;
         try {
@@ -39,7 +41,7 @@ public class UserRecodServiceImpl implements UserRecodService {
     }
 
     @Override
-    public int getCount(String xscode) {
+    public int getCountNum(String xscode) {
         return userRecordDao.getCount(xscode);
     }
 
@@ -76,6 +78,18 @@ public class UserRecodServiceImpl implements UserRecodService {
     @Override
     public List<Wzss> getShenSu(String sfcode) {
         return userRecordDao.queyrShenSu(sfcode);
+    }
+
+    @Override
+    public List<Map<String, Object>> getWzDetails(String id) {
+        Map<String,Object> map =new HashMap<>();
+        map.put("id", id);
+        return userRecordDao.getWZDetails(map);
+    }
+
+    @Override
+    public Integer updateStatus(String carcode, String time) {
+        return userRecordDao.updateStatus(carcode, time);
     }
 }
 

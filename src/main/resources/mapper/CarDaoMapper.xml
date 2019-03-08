@@ -38,4 +38,16 @@
     <insert id="addCarInfo" parameterType="com.jk.jtms.entity.Car">
         insert into car_list(xs_code, car_code, bk_score)
     </insert>
+
+    <select id="getUserId" resultType="string">
+        select user_id from car_list where car_code = #{carcode}
+    </select>
+
+    <select id="getWzType" resultType="String">
+       SELECT id FROM `wz_info` where name = #{type}
+    </select>
+
+    <insert id="addTypeDetails">
+        INSERT INTO type_details(`car_code`, `type_id`, `time`, `location`, `pic_url`, `status`, `id`, `sf_code`) VALUES (#{carcode}, #{wzType}, #{time}, #{area}, #{url}, '0', #{id}, #{sfcode});
+    </insert>
 </mapper>

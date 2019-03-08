@@ -1,6 +1,7 @@
 package com.jk.jtms.dao;
 
 import com.jk.jtms.entity.Wzss;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ public interface UserRecordDao {
 
     List<Map<String,Object>> getUserJLDetail(Map map);
 
-    int getCount(String carcode);
+    int getCount(@Param("carCode")String carCode);
 
     List<String> getCarCode(String userid);
 
@@ -31,4 +32,8 @@ public interface UserRecordDao {
     Integer sendSuSong(Wzss wzss);
 
     List<Wzss> queyrShenSu(String sfcode);
+
+    List<Map<String,Object>> getWZDetails(Map map);
+
+    Integer updateStatus(@Param("carcode") String carcode,@Param("time") String time);
 }

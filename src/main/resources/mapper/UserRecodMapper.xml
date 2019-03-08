@@ -26,8 +26,9 @@ WHERE
 		b3.score score,
 		b2.status,
 		b4.`status` sszt,
-		b3.id,
-		b5.`name`
+		b3.id typeid,
+		b5.`name`,
+		b2.id
 		FROM
 		type_details b2
 		inner JOIN  car_list b1 ON b1.car_code = b2.car_code
@@ -39,6 +40,7 @@ WHERE
 			<if test="status != null and status != ''" >and b2.status = #{status}</if>
 			<if test="username != null and username != ''" >and b3.`name` = #{username}</if>
 			<if test="xscode != null and xscode != ''" >and b1.xs_code = #{xscdoe}</if>
+			<if test="sszt != null and sszt != ''" >and b4.`status` = #{sszt}</if>
 		</where>
 		LIMIT #{startPage},#{pageSize}
     </select>
@@ -46,7 +48,7 @@ WHERE
     <select id="getCount" resultType="int">
         select count(1) from type_details
         <where>
-			<if test="carcode != null and carcode != ''"></if>
+			<if test="carCode != null and carCode != ''"> car_code =#{carCode}</if>
 		</where>
     </select>
 
@@ -81,4 +83,12 @@ FROM
 	<select id="queyrShenSu" parameterType="string" resultType="com.jk.jtms.entity.Wzss">
 		select * from wz_ss where sf_code = #{sfcode}
 	</select>
+
+	<select id="getWZDetails" resultType="java.util.Map">
+		select * from  type_details where id = #{id}
+	</select>
+
+	<update id="updateStatus">
+		UPDATE `type_details` SET `status` = '1' WHERE `car_code` = #{carcode} AND `time` = #{time}
+	</update>
 </mapper>

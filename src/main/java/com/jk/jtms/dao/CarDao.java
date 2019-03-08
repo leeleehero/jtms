@@ -4,7 +4,10 @@ import com.jk.jtms.entity.Car;
 import com.jk.jtms.entity.CarDTO;
 import org.apache.ibatis.annotations.Param;
 
+import javax.print.DocFlavor;
+import java.lang.reflect.MalformedParameterizedTypeException;
 import java.util.List;
+import java.util.Map;
 
 public interface CarDao {
     /**
@@ -20,4 +23,10 @@ public interface CarDao {
      * @return
      */
     Integer addCarInfo(@Param("car") Car car);
+
+    String getUserId(String carcode);
+
+    String getWzType(String type);
+
+    Integer addTypeDetails(Map map);
 }

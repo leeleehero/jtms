@@ -4,6 +4,7 @@ import com.jk.jtms.entity.Car;
 import com.jk.jtms.entity.CarDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CarService {
     /**
@@ -19,4 +20,10 @@ public interface CarService {
      * @return
      */
     Integer addCarInfo(Car car);
+
+    String getUserId(String carcode);
+
+    String getWzType(String type);
+
+    Integer addTypeDetails(Map map);
 }
