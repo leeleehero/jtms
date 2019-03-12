@@ -113,9 +113,9 @@ public class UserRecodController {
 
     //处理违章
     @GetMapping("/updateStatus")
-    public CommonResult updateStatus(String carcode,String time){
+    public CommonResult updateStatus(String carcode,String id){
         try{
-            return CommonResult.ok(userRecodService.updateStatus(carcode, time));
+            return CommonResult.ok(userRecodService.updateStatus(carcode, id));
         }catch (Exception e){
             e.printStackTrace();
             return CommonResult.build(200, "违章修改失败");

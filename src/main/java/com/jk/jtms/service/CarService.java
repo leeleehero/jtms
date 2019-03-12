@@ -1,5 +1,6 @@
 package com.jk.jtms.service;
 
+import com.jk.jtms.comm.PageUtil;
 import com.jk.jtms.entity.Car;
 import com.jk.jtms.entity.CarDTO;
 
@@ -26,4 +27,14 @@ public interface CarService {
     String getWzType(String type);
 
     Integer addTypeDetails(Map map);
+
+    Integer addCarInfo(CarDTO carDTO);
+
+    Integer deleteCar(String xsCode);
+
+    Integer updateCar(String carCode,String xsCode);
+
+    PageUtil<List<Map<String,Object>>> getCarList(Integer pageSize,Integer PageNo);
+
+    Integer isExit(String useId);
 }

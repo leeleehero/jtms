@@ -4,6 +4,15 @@ public class CarDTO {
     private String carCode;
     private String username;
     private String xsCode;
+    private String userid;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
     public String getCarCode() {
         return carCode;

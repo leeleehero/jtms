@@ -89,6 +89,6 @@ FROM
 	</select>
 
 	<update id="updateStatus">
-		UPDATE `type_details` SET `status` = '1' WHERE `car_code` = #{carcode} AND `time` = #{time}
+		UPDATE `type_details` SET `status` = '1' WHERE `car_code` = #{carcode} AND `id` = #{id}
 	</update>
 </mapper>

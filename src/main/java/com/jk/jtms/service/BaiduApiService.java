@@ -1,7 +1,6 @@
 package com.jk.jtms.service;
 
 import com.baidu.aip.ocr.AipOcr;
-import jdk.internal.util.xml.impl.Input;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;

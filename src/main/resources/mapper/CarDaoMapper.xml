@@ -50,4 +50,43 @@
     <insert id="addTypeDetails">
         INSERT INTO type_details(`car_code`, `type_id`, `time`, `location`, `pic_url`, `status`, `id`, `sf_code`) VALUES (#{carcode}, #{wzType}, #{time}, #{area}, #{url}, '0', #{id}, #{sfcode});
     </insert>
+
+    <insert id="addCar">
+        INSERT INTO `car_list`(`xs_code`, `car_code`, `user_id`, `bk_score`) VALUES (#{carDTO.xsCode}, #{carDTO.carCode}, #{carDTO.userid}, 0);
+    </insert>
+
+    <delete id="deleteCar" >
+        delete from car_list where xs_code = #{xsCode}
+    </delete>
+    
+    <update id="updateCar">
+        update car_list set car_code = #{carCode} where xs_code = #{xsCode}
+    </update>
+
+    <select id="getCarList" resultType="java.util.Map">
+        SELECT
+	b1.xs_code,
+	b1.car_code,
+	b2.`name`,
+	b1.user_id
+FROM
+	car_list b1
+	INNER JOIN sys_user b2 ON b1.user_id = b2.sf_code
+    </select>
+
+    <select id="getCarPage" resultType="map">
+          SELECT
+	b1.xs_code,
+	b1.car_code,
+	b2.`name`,
+	b1.user_id
+FROM
+	car_list b1
+	INNER JOIN sys_user b2 ON b1.user_id = b2.sf_code
+	limit #{start}  ,#{pageSize}
+    </select>
+
+    <select id="isExist" resultType="java.lang.Integer">
+        select count(1) from sys_user where id = #{useId}
+    </select>
 </mapper>

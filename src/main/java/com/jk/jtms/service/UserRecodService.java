@@ -67,8 +67,6 @@ public interface UserRecodService {
 
     /**
      * 查询违章细节
-     * @param carcode
-     * @param time
      * @return
      */
     List<Map<String,Object>> getWzDetails(String id);

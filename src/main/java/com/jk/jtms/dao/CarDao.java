@@ -3,6 +3,7 @@ package com.jk.jtms.dao;
 import com.jk.jtms.entity.Car;
 import com.jk.jtms.entity.CarDTO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import javax.print.DocFlavor;
 import java.lang.reflect.MalformedParameterizedTypeException;
@@ -29,4 +30,16 @@ public interface CarDao {
     String getWzType(String type);
 
     Integer addTypeDetails(Map map);
+
+    Integer addCar(@Param("carDTO") CarDTO carDTO);
+
+    Integer deleteCar(@Param("xsCode") String xsCode);
+
+    Integer updateCar(@Param("carCode")String carCode,@Param("xsCode") String xsCode);
+
+    List<Map<String,Object>> getCarList();
+
+    List<Map<String,Object>> getCarPage(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
+
+    Integer isExist(String useId);
 }

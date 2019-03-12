@@ -88,8 +88,8 @@ public class UserRecodServiceImpl implements UserRecodService {
     }
 
     @Override
-    public Integer updateStatus(String carcode, String time) {
-        return userRecordDao.updateStatus(carcode, time);
+    public Integer updateStatus(String carcode, String id) {
+        return userRecordDao.updateStatus(carcode, id);
     }
 }
 
