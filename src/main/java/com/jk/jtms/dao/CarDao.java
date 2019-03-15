@@ -16,8 +16,9 @@ public interface CarDao {
      * @param carDTO
      * @return
      */
-    List<Car> getCarInfo(@Param("carDTO") CarDTO carDTO);
+    List<Car> getCarInfo(@Param("carDTO") CarDTO carDTO,@Param("start") Integer start,@Param("pageSize") Integer pageSize);
 
+    Integer getCountInfo();
     /**
      * 添加车辆信息
      * @param car

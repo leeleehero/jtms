@@ -13,7 +13,7 @@ public interface CarService {
      * @param carDTO
      * @return
      */
-    List<Car> getCarInfo(CarDTO carDTO);
+    PageUtil<List<Car>> getCarInfo(CarDTO carDTO,int pageNo, int pageSize);
 
     /**
      * 新增车辆信息

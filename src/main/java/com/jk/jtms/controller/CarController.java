@@ -21,8 +21,14 @@ public class CarController {
     private CarService carService;
 
     @GetMapping("/getCarInfo")
-    public List<Car> getCarInfo(CarDTO carDTO){
-        return carService.getCarInfo(carDTO);
+    public CommonResult getCarInfo(CarDTO carDTO,int pageNo, int pageSize){
+
+        try{
+            return CommonResult.ok(carService.getCarInfo(carDTO,pageSize,pageNo));
+        }catch (Exception e){
+            e.printStackTrace();
+            return CommonResult.build(500, "查询");
+        }
     }
 
     @GetMapping("/addCar")
@@ -46,9 +52,9 @@ public class CarController {
     }
 
     @PostMapping("/updateCar")
-    public CommonResult updateCar(String xsCode ,String xscode){
+    public CommonResult updateCar(String carCode ,String xscode){
         try{
-            return CommonResult.ok(carService.updateCar(xsCode, xscode));
+            return CommonResult.ok(carService.updateCar(carCode, xscode));
         }catch (Exception e){
             e.printStackTrace();
             return CommonResult.build(500, "插入错误");

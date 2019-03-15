@@ -32,8 +32,17 @@
                and xs_code = #{carDTO.xsCode}
             </if>
         </where>
+        limit #{start}  ,#{pageSize}
     </select>
 
+    <select id="getCountInfo" resultType="java.lang.Integer">
+        select
+            count(*)
+        from
+            car_list a inner join sys_user b
+        on
+            a.user_id = b.id
+    </select>
 
     <insert id="addCarInfo" parameterType="com.jk.jtms.entity.Car">
         insert into car_list(xs_code, car_code, bk_score)
